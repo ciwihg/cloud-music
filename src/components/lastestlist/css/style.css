@@ -1,6 +1,4 @@
-.lastest-music{
-  padding-top: 24px;
-}
+
 .ltt-music-list{
   list-style: none;
   padding: 0;
@@ -27,12 +25,15 @@
 .song-info{
   color: #888;
   font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .sq-icon{
   width: 12px;
   height: 8px;
   display: inline-block;
-  background-image:url(/static/icon.png);
+  background-image:url(./static/icon.png);
   background-position: 0 0;
   background-size: 166px 97px;
   margin-right: 5px;
@@ -43,6 +44,7 @@
   position: relative;
   padding: 6px 0px 6px 10px;
   box-sizing: border-box;
+  display:flex;
 }
 .songitem::after{
   content: "";
@@ -56,23 +58,26 @@
   transform: scale(.3333);
   transform-origin: top left;
   border-bottom: 1px solid rgba(0,0,0,.1);
+  box-sizing: border-box;
 }
 .sg-alias{
   color:#888;
   white-space: nowrap;
 }
 .sgitem-subwrap{
+    overflow: hidden;
   display: inline-block;
-  width: 80%;
+  width: 1%;
+  flex-grow: 1;
 }
 .sg-play-btn{
+  padding-left: 10px;
   display: inline-block;
-  width: 20%;
+  width: 22px;
   height: 100%;
   text-align: right;
   vertical-align: top;
   padding-right: 10px;
-  box-sizing: border-box;
 }
 .sg-play-btn::before{
   content: "";
@@ -85,7 +90,54 @@
   height: 22px;
   width: 22px;
   vertical-align: middle;
-  background-image: url(/static/icon.png);
+  background-image: url(./static/icon.png);
   background-size: 166px 97px;
   background-position: -24px 0px;
+}
+.sl-num{
+  color:#999;
+  font-size: 17px;
+  font-family: Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  width: 28px;
+}
+.hot3{
+  color:#df3436;
+}
+.sgl-cover-wrap{
+  height: 43px;
+  width: 43px;
+  margin-right: 10px;
+}
+.theme-black .song-title{
+  color:#fff;
+}
+.theme-black .song-info{
+  color:hsla(0,0%,100%,.6);
+}
+.theme-black .songitem::after{
+  border-bottom: 1px solid hsla(0,0%,100%,.1);
+}
+.theme-playlist .sl-num{
+  width:40px;
+  justify-content: center;
+}
+.theme-playlist .songitem{
+   padding: 6px 0px 6px 0px;
+}
+.theme-playlist .hot3{
+  color:#999;
+}
+.item-disable .sl-num,.item-disable .song-title,.item-disable .song-info,.item-disable .sg-alias{
+  color:#ccc;
+}
+.item-disable .sg-play-btn span{
+  opacity: .3;
+}
+.llt-highlight{
+  color: #507daf;
+}
+.item-disable .llt-highlight{
+  color: #ccc;
 }

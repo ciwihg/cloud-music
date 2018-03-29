@@ -23,12 +23,14 @@ class Recommandsongs extends Component{
           hq=null;
         }
         return (<li key={index}>
+          <a href={"./#/playlist"+item.id}>
         <div className="si-wrap">
           <img src={item.picUrl}/>
           <p>{item.name}</p>
           {hq}
           <span className="playcount">{this.formatNumber(item.playCount)}</span>
         </div>
+        </a>
       </li>);})
       var listitem2=this.props.datas[1].map((item,index)=>{
         var hq;
@@ -38,12 +40,14 @@ class Recommandsongs extends Component{
           hq=null;
         }
         return (<li key={index}>
+          <a href={"./#/playlist"+item.id}>
         <div className="si-wrap">
           <img src={item.picUrl}/>
           <p>{item.name}</p>
           {hq}
           <span className="playcount">{this.formatNumber(item.playCount)}</span>
         </div>
+        </a>
       </li>);})
     return (<div className="rmd-songs">
     <h2 className="rmd-songs-title">推荐歌单</h2>

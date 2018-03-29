@@ -1,11 +1,12 @@
 var path=require('path');
+const HtmlWebpackPlugin=require('html-webpack-plugin');
 module.exports={
   entry:{
     app:'./index.js'
   },
   output:{
     path:path.resolve(__dirname,'../dist'),
-    filename:'[name].bundle.js'
+    filename:'[name].[hash].js'
   },
   module:{
     rules:[
@@ -15,16 +16,24 @@ module.exports={
         use:{
           loader:'babel-loader',
           options:{
-            presets:["react"]
+            presets:["es2015","react"],
+            plugins: ["syntax-dynamic-import"]
           }
         }
-      },{
+      } /*,{
         test:/\.css$/,
         use:[
           {loader:'style-loader'},
-          {loader:'css-loader'}
+          {loader:'css-loader',
+           options:{minimize: true}}
         ]
-      }
+      }*/
     ]
-  }
+  },
+  plugins:[
+    new HtmlWebpackPlugin({
+      title:"Ciwi work",
+      template:'index.html'
+    })
+  ]
 }

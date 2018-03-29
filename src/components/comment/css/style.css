@@ -1,0 +1,97 @@
+.plc-ul{
+  list-style: none;
+  padding: 0;
+}
+.plc-item{
+  padding-top: 10px;
+  position: relative;
+}
+.plc-item::after{
+  content: "";
+  width: 300%;
+  height: 300%;
+  position: absolute;
+  left: 0;
+  top:0;
+  transform: scale(.3333);
+  transform-origin: left top;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  box-sizing: border-box;
+}
+.plc-uimg-wrap{
+  width: 30px;
+  height: 30px;
+  margin: 0px 10px;
+  position: relative;
+}
+.plc-uimg-wrap img{
+  width: 100%;
+  border-radius: 50%;
+}
+.plc-unickname{
+  font-size: 14px;
+    color: #666;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.plc-uptime{
+  font-size: 9px;
+    color: #999;
+}
+.plc-cc{
+  margin-left: 50px;
+  color: #333;
+    font-size: 15px;
+    line-height: 22px;
+    margin-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 11px;
+}
+.plc-ulike{
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  margin-left: 6px;
+}
+.plc-ulike-wrap{
+  display: inline-block;
+  line-height: 22px;
+font-size: 11px;
+color: #999;
+position: absolute;
+top:0px;
+right:10px;
+}
+.plc-utl{
+  flex-grow: 1;
+  position: relative;
+}
+.cblack .plc-unickname{
+  color: hsla(0,0%,100%,.7);
+}
+.cblack .plc-uptime{
+   color:hsla(0,0%,100%,.3);
+}
+.cblack .plc-cc{
+  color: white;
+}
+.cblack .plc-item::after{
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.cblack .plc-repli-wrap{
+  color: hsla(0,0%,100%,.6);
+}
+.plc-repli-wrap{
+  color: #888;
+  background-color: hsla(0,0%,100%,.05);
+  margin-left: 50px;
+  font-size: 14px;
+    line-height: 21px;
+    padding: 10px;
+    margin-right: 10px;
+}
+.plc-ubeat{
+  color:#507daf;
+}

@@ -1,0 +1,23 @@
+.search-wrap{
+  padding-top: 104px;
+}
+.search-spin{
+  line-height: 30px;
+color: #888;
+font-size: 14px;
+text-align: center;
+position: fixed;
+bottom: 0;
+background-color: white;
+width: 100%;
+}
+.search-spin img{
+  height: 20px;
+  vertical-align:middle;
+}
+.search-spin span{
+  vertical-align:middle;
+  line-height: 1;
+  display: inline-block;
+  margin-left: 10px;
+}

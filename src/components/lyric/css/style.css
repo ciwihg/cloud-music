@@ -1,0 +1,31 @@
+.ly-tl{
+  line-height: 1.1;
+  color:rgb(254,254,254);
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+.ly-wrap{
+  padding: 0 35px;
+  margin-top: 25px;
+}
+.ly-content p{
+  line-height: 1.5;
+  font-size: 16px;
+  text-align: center;
+  color: hsla(0,0%,100%,.6);
+  padding-bottom: 8px;
+}
+.ly-cwindow{
+  margin-top: 14px;
+  height: 88px;
+  overflow: hidden;
+}
+.ly-content{
+  transition: transform .3s ease-out;
+}
+.ly-itemon{
+  color:white !important;
+}

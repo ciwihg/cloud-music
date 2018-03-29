@@ -1,0 +1,15 @@
+.sgl-wrap{
+  list-style: none;
+  padding: 0;
+}
+.sl-num{
+  color:#df3436;
+  font-size: 17px;
+  font-family: Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  width: 28px;
+}
+.test-style{
+  background-image: url(../../../../static/disc.png);
+}
