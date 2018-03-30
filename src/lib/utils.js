@@ -52,4 +52,9 @@ function findhighlight(str,key){
   return results;
 }
 
-export {Jsonp,formatNumber,getUserType,findhighlight}
+function formatDuration(str){
+  var times=str.match(/(\d\d):(\d\d)(\.\d+)/);
+  if(!times){return;}
+  return parseFloat(times[1]*60)+parseFloat(times[2])+parseFloat(times[3]);
+}
+export {Jsonp,formatNumber,getUserType,findhighlight,formatDuration}

@@ -7,7 +7,6 @@ class Navbar extends Component{
     super(props);
     this.handleClick=this.handleClick.bind(this);
     this.history=createHistory();
-
   }
   getSpanItem(target){
      if(target.tagName=="SPAN"){

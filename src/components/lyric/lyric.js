@@ -16,6 +16,12 @@ class Lyric extends Component{
   componentWillMount(){
     Jsonp("/lyric?id="+this.props.lyricid);
   }
+  reset(){
+    this.lycontent.childNodes[this.lyricnum].className="";
+    this.lyricnum=0;
+    this.d=0;
+    this.lycontent.style.transform="translateY("+0+"px)";
+  }
   scrollLyric(d){
     this.lycontent.style.transform="translateY("+d+"px)";
   }
@@ -35,12 +41,12 @@ class Lyric extends Component{
     if(!this.state.lyrics[this.lyricnum+1]){
       return null
     }
-    var times=this.state.lyrics[this.lyricnum+1].time.match(/(\d\d):(\d\d)(\.\d+)/);
-    return parseFloat(times[1]*60)+parseFloat(times[2])+parseFloat(times[3]);
+    return this.state.lyrics[this.lyricnum+1].time;
 
   }
   componentDidUpdate(){
     if(this.lycontent){
+      this.reset();
       this.lycontent.childNodes[this.lyricnum].className="ly-itemon";
       var height=this.getMaxHeight();
       height>88&&this.setHeight(height+'px');

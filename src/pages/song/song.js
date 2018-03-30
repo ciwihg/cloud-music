@@ -6,7 +6,7 @@ import Lyric from '../../components/lyric/lyric.js'
 import Comment from '../../components/comment/comment.js'
 import Simiplaylist from '../../components/simiplaylist/simiplaylist.js'
 import _simisong from '../../components/simisonglist/simisonglist.js'
-import ReactPlayer from 'react-player' 
+import ReactPlayer from 'react-player'
 class Songpage extends Component{
   constructor(props){
     super(props);
@@ -22,6 +22,16 @@ class Songpage extends Component{
     this.handleClick=this.handleClick.bind(this);
     this.playEnd=this.playEnd.bind(this);
     window.songpage=this;
+  }
+  componentWillReceiveProps(nextProps){
+    Jsonp("/song?id="+nextProps.match.params.id);
+    Jsonp("/lyric?id="+nextProps.match.params.id);
+    Jsonp("/songurl?id="+nextProps.match.params.id);
+    Jsonp("/comment?id="+nextProps.match.params.id+"&type=4&cb=handleComment");
+    Jsonp("/simiplaylist?id="+nextProps.match.params.id);
+    Jsonp("/simisong?id="+nextProps.match.params.id);
+    window.scrollTo( 0, 0 );
+
   }
   componentWillMount(){
      Jsonp("/song?id="+this.props.match.params.id);
@@ -81,10 +91,10 @@ class Songpage extends Component{
            clearInterval(this.intervalno);
            return;
       }
-      (Math.abs(this.player.getCurrentTime()-this.lyric.getNextTime())<0.1)&&this.lyric.scrollNext()
+      (Math.abs(this.player.getCurrentTime()-this.lyric.getNextTime())<0.5)&&this.lyric.scrollNext()
     }
     runlyric=runlyric.bind(this);
-    this.intervalno=setInterval(runlyric,100);
+    this.intervalno=setInterval(runlyric,50);
   }
   componentDidUpdate(){
 

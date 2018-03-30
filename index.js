@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { HashRouter, Route, Link,Redirect} from 'react-router-dom';
-import {handleSae} from './src/lib/utils';
-import createHistory from "history/createHashHistory"
+import {formatDuration} from './src/lib/utils';
+import createHistory from "history/createHashHistory";
+import './src/common/css/app.css'
 import Loadable from 'react-loadable';
 const App=Loadable({
   loader: () => import('./app.js'),
@@ -69,18 +70,21 @@ window.handleComment=function(data){
   document.body.removeChild(  window.scripts.pop());
 }
 window.handleLyric=function(data){
-  //console.log(data);
-  var result=data.lrc.lyric.match(/\[([^\[]+)/g);
+  var lyrics=[]
+  var result=data.lrc.lyric.match(/\[([^\n]+)\n/g);
   result.forEach(function(cvalue,cindex,array){
-    var temp=cvalue.match(/\[(.+)\]((.|\n)+)/);
-    temp?(array[cindex]={
-      time:temp[1],
-      lyric:temp[2]
-   }):(array[cindex]={
-      editor:cvalue
-    });
+    var temp=cvalue.match(/\[[^\[\]]+\]/g);
+    var content=cvalue.match(/\[.+\]((.|\n)+)/)[1];
+       for(var i=0;i<temp.length;i++){
+         var obj={
+           time:formatDuration(temp[i]),
+           lyric:content
+         };
+         lyrics.push(obj);
+       }
   });
-   var filtered=result.filter((item)=>{
+  lyrics.sort((a,b)=>{return a.time-b.time});
+   var filtered=lyrics.filter((item)=>{
     return item.lyric!='\n';
   })
    window.lyric.updateLyrics(filtered);

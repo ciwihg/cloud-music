@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import './css/style.css';
 import {findhighlight} from '../../lib/utils.js';
+import createHistory from "history/createHashHistory";
 class Lastestlist extends Component{
   constructor(props){
     super(props);
+    this.hanleClick=this.hanleClick.bind(this);
+    this.history=createHistory();
+  }
+  hanleClick(e){
+    var id=e.target.getAttribute('linkid');
+    if(id){
+      this.history.push("/song"+id);
+    }
   }
   formatArtistRow(song){
     var artistrow=song.artists[0].name;
@@ -83,8 +92,8 @@ class Lastestlist extends Component{
      }
       return (
         <li key={index} className={this.getSongstatus(item.song.privilege)?"item-disable":''}>
-           <a href={"./#/song"+item.id}>
-            <div className="songitem">
+           <a href="javascript:;">
+            <div className="songitem" linkid={item.id}>
             {numPart}
             {coverPart}
             <div className="sgitem-subwrap">
@@ -101,7 +110,7 @@ class Lastestlist extends Component{
       );
     });
     return (
-             <ul className={"ltt-music-list theme-"+this.props.theme}>
+             <ul className={"ltt-music-list theme-"+this.props.theme} onClick={this.hanleClick}>
              {listitems}
 
              </ul>

@@ -33,7 +33,8 @@ module.exports={
   plugins:[
     new HtmlWebpackPlugin({
       title:"Ciwi work",
-      template:'index.html'
+      template:'index.html',
     })
+
   ]
 }
