@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { HashRouter, Route, Link,Redirect} from 'react-router-dom';
-import {formatDuration} from './src/lib/utils';
+import {formatDuration,serverAvailable} from './src/lib/utils';
 import createHistory from "history/createHashHistory";
+import Popmask from './src/components/popmask/popmask.js';
 import './src/common/css/app.css'
 import Loadable from 'react-loadable';
 const App=Loadable({
@@ -114,20 +115,38 @@ window.getHotsearchdata=function(data){
 }
 window.reredener=function (data,newsongs){
   window.reactdatas={};
-  window.recommendpage.setState({
+  window.recommendpage&&window.recommendpage.setState({
     datas:{
       rmdlist:data.HomeRecommend.data._list,
       sglist:newsongs.result
     }
   });
-  document.body.removeChild(  window.scripts.pop());
+  window.recommendpage&&document.body.removeChild(  window.scripts.pop());
 }
-ReactDom.render(<HashRouter>
-  <div>
-  <Route exact path="/" render={()=>{ return (<Redirect to="/home/rmd"/>)}}/>
-  <Route path="/home" component={App}/>
-  <Route exact path="/playlist:id" component={Playlist}/>
-  <Route exact path="/song:id" component={Songpage}/>
-  </div>
-  </HashRouter>
-  , document.querySelector("#app"));
+serverAvailable(renderApp,renderError);
+function renderApp(){
+  ReactDom.render(<HashRouter>
+    <div>
+    <Route exact path="/" render={()=>{ return (<Redirect to="/home/rmd"/>)}}/>
+    <Route path="/home" component={App}/>
+    <Route exact path="/playlist:id" component={Playlist}/>
+    <Route exact path="/song:id" component={Songpage}/>
+    </div>
+    </HashRouter>
+    , document.querySelector("#app"));
+}
+function renderApp(){
+  ReactDom.render(<HashRouter>
+    <div>
+    <Route exact path="/" render={()=>{ return (<Redirect to="/home/rmd"/>)}}/>
+    <Route path="/home" component={App}/>
+    <Route exact path="/playlist:id" component={Playlist}/>
+    <Route exact path="/song:id" component={Songpage}/>
+    </div>
+    </HashRouter>
+    , document.querySelector("#app"));
+}
+function renderError(){
+  ReactDom.render(<Popmask msg="服务器没开启，请联系作者Ciwi开启后再尝试访问"></Popmask>
+    , document.querySelector("#app"));
+}

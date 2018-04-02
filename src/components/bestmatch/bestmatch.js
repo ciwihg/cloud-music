@@ -4,9 +4,9 @@ class Btmatch extends Component{
   constructor(props){
     super(props);
   }
-  radioItem(d){
+  radioItem(d,k){
     return (
-      <li>
+      <li key={k}>
          <div className="btmatch-it-ar">
          <div className="btmatch-ar-img-wrap">
            <img src={d[0].picUrl} />
@@ -19,9 +19,9 @@ class Btmatch extends Component{
       </li>
     )
   }
-  artistItem(d){
+  artistItem(d,k){
     return (
-      <li>
+      <li key={k}>
          <div className="btmatch-it-ar">
          <div className="btmatch-ar-img-wrap">
            <img src={d[0].picUrl} />
@@ -34,9 +34,9 @@ class Btmatch extends Component{
       </li>
     )
   }
-  albumItem(d){
+  albumItem(d,k){
     return (
-      <li>
+      <li key={k}>
           <div className="btmatch-it-al">
           <div className="btmatch-al-img-wrap">
            <img src={d[0].picUrl} />
@@ -50,9 +50,9 @@ class Btmatch extends Component{
       </li>
     )
   }
-  mvItem(d){
+  mvItem(d,k){
     return (
-      <li>
+      <li key={k}>
           <div className="btmatch-it-mv">
           <div className="btmatch-mv-img-wrap">
            <img src={d[0].cover} />
@@ -71,10 +71,10 @@ class Btmatch extends Component{
     var items=this.props.datas.orders.map((item,index)=>{
       var element;
       switch(item){
-        case "artist":element=that.artistItem(that.props.datas[item]);break;
-        case "album":element=that.albumItem(that.props.datas[item]);break;
-        case "mv":element=that.mvItem(that.props.datas[item]);break;
-        case "radio":element=that.radioItem(that.props.datas[item]);break;
+        case "artist":element=that.artistItem(that.props.datas[item],index);break;
+        case "album":element=that.albumItem(that.props.datas[item],index);break;
+        case "mv":element=that.mvItem(that.props.datas[item],index);break;
+        case "radio":element=that.radioItem(that.props.datas[item],index);break;
         default:element=null;
       }
     return  element;

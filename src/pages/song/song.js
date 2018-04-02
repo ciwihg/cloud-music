@@ -4,6 +4,7 @@ import './css/style.css'
 import Songdisc from '../../components/songdisc/songdisc.js'
 import Lyric from '../../components/lyric/lyric.js'
 import Comment from '../../components/comment/comment.js'
+import Popmask from '../../components/popmask/popmask.js'
 import Simiplaylist from '../../components/simiplaylist/simiplaylist.js'
 import _simisong from '../../components/simisonglist/simisonglist.js'
 import ReactPlayer from 'react-player'
@@ -16,7 +17,8 @@ class Songpage extends Component{
       playing:false,
       comments:null,
       simiplaylist:null,
-      simisong:null
+      simisong:null,
+      loading:true
     };
     this.loglyric=this.loglyric.bind(this);
     this.handleClick=this.handleClick.bind(this);
@@ -30,6 +32,10 @@ class Songpage extends Component{
     Jsonp("/comment?id="+nextProps.match.params.id+"&type=4&cb=handleComment");
     Jsonp("/simiplaylist?id="+nextProps.match.params.id);
     Jsonp("/simisong?id="+nextProps.match.params.id);
+    this.setState({
+      loading:true,
+      playing:false
+    });
     window.scrollTo( 0, 0 );
 
   }
@@ -71,7 +77,8 @@ class Songpage extends Component{
     });
   }
   playEnd(){
-    clearInterval(this.intervalno);
+    window.lyric.reset();
+    this.pause();
   }
   playing(){
     this.setState({
@@ -84,17 +91,20 @@ class Songpage extends Component{
     });
   }
   loglyric(){
-    this.playing();
+  //  this.playing();
+  this.setState({
+    loading:false
+  });
     function runlyric(){
-      if(!this.player)
+      if(!this.player||!this.lyric.getNextTime())
       {
            clearInterval(this.intervalno);
            return;
       }
-      (Math.abs(this.player.getCurrentTime()-this.lyric.getNextTime())<0.5)&&this.lyric.scrollNext()
+      (this.player.getCurrentTime()-this.lyric.getNextTime()>0)&&this.lyric.scrollNext()
     }
     runlyric=runlyric.bind(this);
-    this.intervalno=setInterval(runlyric,50);
+    this.intervalno=setInterval(runlyric,200);
   }
   componentDidUpdate(){
 
@@ -157,6 +167,7 @@ class Songpage extends Component{
                {this.simisong()}
                <ReactPlayer url={this.state.url} width='0px'
           height="0px" playing={this.state.playing} ref={(p)=>{this.player=p;}} onReady={this.loglyric} onEnded={this.playEnd}></ReactPlayer>
+          {this.state.loading?(<Popmask msg={"歌曲努力加载中，请稍后"}></Popmask>):null}
             </div>);
           }else{
             return null;

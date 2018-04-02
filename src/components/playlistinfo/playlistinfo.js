@@ -21,8 +21,8 @@ class Plinfo extends Component{
     var tags=this.props.datas.tags.map((item,index)=>{
       return (<span key={index}>{item}</span>);
     });
-    var descriptions=this.props.datas.description.match(/.*(\n|$)/g).map((item)=>{
-      return (<span>{item}<br></br></span>)
+    var descriptions=this.props.datas.description.match(/.*(\n|$)/g).map((item,index)=>{
+      return (<span key={index}>{item}<br></br></span>)
     });
     return (<div className="pli-wrap">
     <div className="pli-tags">标签：{tags}</div>

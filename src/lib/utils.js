@@ -30,16 +30,21 @@ function getUserType(u){
 
 function findhighlight(str,key){
   var reg=new RegExp(key);
-  var hlele=(<span className="llt-highlight">{key}</span>);
+  var unikey=0;
+  var hlele;
   var results=[];
   function find(s){
     var pos=s.search(reg);
     if(pos!=-1){
       if(pos==0){
+        ++unikey;
+        hlele=(<span key={unikey} className="llt-highlight">{key}</span>);
         results.push(hlele);
         find(s.slice(key.length));
       }else{
        results.push(s.slice(0,pos));
+       ++unikey;
+       hlele=(<span key={unikey} className="llt-highlight">{key}</span>);
        results.push(hlele);
       find(s.slice(pos+key.length));
       }
@@ -57,4 +62,12 @@ function formatDuration(str){
   if(!times){return;}
   return parseFloat(times[1]*60)+parseFloat(times[2])+parseFloat(times[3]);
 }
-export {Jsonp,formatNumber,getUserType,findhighlight,formatDuration}
+
+function serverAvailable(render,error){
+  var script = document.createElement("script");
+  script.src = config.Apihost+"/getrmd";
+  document.body.insertBefore(script, document.body.firstChild);
+  script.onerror=error;
+  script.onload=render;
+}
+export {Jsonp,formatNumber,getUserType,findhighlight,formatDuration,serverAvailable}
