@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './css/style.css';
+import './css/style.scss';
 import {findhighlight} from '../../lib/utils.js';
 import createHistory from "history/createHashHistory";
 class Lastestlist extends Component{

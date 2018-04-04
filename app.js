@@ -32,8 +32,8 @@ class App extends Component{
     return (
       <div>
       <Header></Header>
-      <Navbar></Navbar>
-      <Route exact path='/home/rmd'  component={Recommand}/>
+      <Navbar page={this.props.location.pathname}></Navbar>
+      <Route exact path='/home/rmd'   component={Recommand}/>
       <Route exact path='/home/hotsg' component={Hot}/>
       <Route exact path='/home/search' component={Search}/>
       </div>

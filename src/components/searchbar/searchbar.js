@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Jsonp} from '../../lib/utils.js';
+import {Jsonp,writeCookie} from '../../lib/utils.js';
 import './css/style.css'
 class Searchbar extends Component{
   constructor(props){
@@ -31,6 +31,7 @@ class Searchbar extends Component{
     });
   }
   handleFocus(){
+    console.log(document.cookie);
     this.props.parent.setState({inputfocus:true,mutimatch:null,searchresult:null});
     (this.props.keyword!="")&&Jsonp("/keyword?key="+this.props.keyword+"&cb=handleKeyword");
   }
@@ -43,7 +44,7 @@ class Searchbar extends Component{
       Jsonp("/mutimatch?key="+this.props.keyword+"&cb=handleMutimatch");
       Jsonp("/searchget?key="+this.props.keyword+"&cb=handleSearchget&limit=20&offset=0");
       this.props.parent.setState({inputfocus:false,searchresult:null});
-
+      writeCookie(this.props.keyword);
   }
   render(){
     return (<form className="sh-form"  method="get" onSubmit={this.handleSubmit}>

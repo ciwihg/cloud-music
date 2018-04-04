@@ -9,13 +9,27 @@ module.exports=merge(base,{
      {
             test:/\.css$/,
             use:ExtractTextPlugin.extract({
-              use:{
+              use:[{
                     loader:'css-loader',
                     options:{
                       minimize: true,
                       url:false
                     }
-                  },
+                  }],
+               fallback:"style-loader"
+            })
+          },{
+            test:/\.scss$/,
+            use:ExtractTextPlugin.extract({
+              use:[{
+                    loader:'css-loader',
+                    options:{
+                      minimize: true,
+                      url:false
+                    }
+                  },{
+                    loader:'sass-loader'
+                  }],
                fallback:"style-loader"
             })
           }

@@ -1,0 +1,58 @@
+@import "../../../common/css/colors.scss";
+.navbar{
+  position: absolute;
+  left: 0;
+  top:0;
+  height: 40px;
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  z-index: 3;
+}
+.navbar::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+.navbar li{
+  float: left;
+  text-align: center;
+  width: 33.3%;
+}
+.navbar li span{
+  line-height: 40px;
+  font-size: 15px;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 5px;
+}
+.navbar li,.navbar li span{
+  height: 100%;
+}
+.nav-item-on{
+  color:$theme_color;
+  border-bottom: 2px solid $theme_color;
+}
+.nav-wrap{
+  position: fixed;
+  height: 40px;
+  width: 100%;
+  left: 0px;
+  top:64px;
+  z-index: 3;
+  background-color: white;
+}
+.nav-wrap::after{
+  content: "";
+  display: block;
+  width:300%;
+  height: 300%;
+  position: absolute;
+  left: 0;
+  top:0;
+  transform-origin: top left;
+  transform: scale(.3333);
+  z-index: 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgb(204,204,204);
+}

@@ -70,4 +70,23 @@ function serverAvailable(render,error){
   script.onerror=error;
   script.onload=render;
 }
-export {Jsonp,formatNumber,getUserType,findhighlight,formatDuration,serverAvailable}
+
+function readCookie(){
+  var result=document.cookie.match(/keys=([^;]+)/);
+  if(result){
+    return JSON.parse(result[1]);
+  }else{
+    var data=[];
+    document.cookie="keys="+JSON.stringify(data);
+    return data;
+  }
+}
+
+function writeCookie(data){
+  var datas=readCookie();
+  var ndatas=datas.filter((element)=>{return element!=data})
+  ndatas.unshift(data);
+  document.cookie="keys="+JSON.stringify(ndatas);
+}
+
+export {Jsonp,formatNumber,getUserType,findhighlight,formatDuration,serverAvailable,readCookie,writeCookie}

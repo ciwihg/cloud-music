@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './css/style.css'
-import {Jsonp} from '../../lib/utils.js';
+import {Jsonp,writeCookie} from '../../lib/utils.js';
 class Hotquerypanel extends Component{
   constructor(props){
     super(props);
@@ -10,6 +10,7 @@ class Hotquerypanel extends Component{
       Jsonp("/mutimatch?key="+e.target.innerHTML+"&cb=handleMutimatch");
       Jsonp("/searchget?key="+e.target.innerHTML+"&cb=handleSearchget&limit=20&offset=0");
       this.props.parent.setState({keyword:e.target.innerHTML,inputfocus:false});
+      writeCookie(e.target.innerHTML);
   }
   render(){
     if(this.props.datas){

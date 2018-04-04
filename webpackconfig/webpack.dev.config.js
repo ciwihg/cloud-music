@@ -16,6 +16,16 @@ module.exports=merge(base,{
           url:false
         }}
         ]
+      },{
+        test:/\.scss$/,
+        use:[
+          {loader:'style-loader'},
+          {loader:'css-loader',
+        options:{
+          url:false
+        }},
+        {loader:'sass-loader'}
+        ]
       }
     ]
   }

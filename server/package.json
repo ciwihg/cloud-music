@@ -1,0 +1,25 @@
+{
+  "name": "music",
+  "version": "1.0.0",
+  "description": "a music web site",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.sinacloud.com/ciwi"
+  },
+  "keywords": [
+    "ciwi",
+    "work",
+    "website"
+  ],
+  "author": "ciwi",
+  "license": "MIT",
+  "dependencies": {
+    "browserify-cryptojs": "^0.3.1",
+    "crypto-js": "^3.1.9-1",
+    "cryptojs": "^2.5.3",
+    "express": "^4.16.2"
+  }
+}

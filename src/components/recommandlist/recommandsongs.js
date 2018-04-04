@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import createHistory from "history/createHashHistory"
-import './css/style.css'
+import './css/style.scss'
 class Recommandsongs extends Component{
   constructor(props){
     super(props);

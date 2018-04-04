@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './css/style.css'
-import {Jsonp} from '../../lib/utils.js';
+import {Jsonp,writeCookie} from '../../lib/utils.js';
 class Suggestsearch extends Component{
   constructor(props){
     super(props);
@@ -11,6 +11,7 @@ class Suggestsearch extends Component{
     Jsonp("/mutimatch?key="+this.props.suggestdata[itemid].keyword+"&cb=handleMutimatch");
     Jsonp("/searchget?key="+this.props.suggestdata[itemid].keyword+"&cb=handleSearchget&limit=20&offset=0");
     this.props.parent.setState({keyword:this.props.suggestdata[itemid].keyword,inputfocus:false,searchresult:null});
+    writeCookie(this.props.suggestdata[itemid].keyword);
   }
   render(){
     if(this.props.keyword==''){

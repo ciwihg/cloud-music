@@ -4,7 +4,7 @@ import { HashRouter, Route, Link,Redirect} from 'react-router-dom';
 import {formatDuration,serverAvailable} from './src/lib/utils';
 import createHistory from "history/createHashHistory";
 import Popmask from './src/components/popmask/popmask.js';
-import './src/common/css/app.css'
+import './src/common/css/app.scss'
 import Loadable from 'react-loadable';
 const App=Loadable({
   loader: () => import('./app.js'),

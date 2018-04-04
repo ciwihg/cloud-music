@@ -6,6 +6,7 @@ import Hotpanel from '../../components/hotquerypanel/hotquerypanel.js'
 import Btmatch from '../../components/bestmatch/bestmatch.js'
 import getsearchlist from '../../components/searchlist/searchlist.js'
 import Suggestsearch from '../../components/suggestsearch/suggestsearch.js'
+import Searchhistory from '../../components/searchhistorypanel/searchhistorypanel.js'
 class Searchpage extends Component{
   constructor(props){
     super(props);
@@ -21,7 +22,8 @@ class Searchpage extends Component{
       mutimatch:null,
       inputfocus:true,
       searchresult:null,
-      loading:false
+      loading:false,
+      historys:[]
     }
   }
   componentWillMount(){
@@ -75,6 +77,7 @@ class Searchpage extends Component{
      inputfocus:d
    });
  }
+
  searchlist(){
    var Searchlist=getsearchlist();
    return <Searchlist datas={this.state.searchresult.result} highlight={this.state.searchresult.result.highlights[0]}></Searchlist>
@@ -83,6 +86,7 @@ class Searchpage extends Component{
     return (<div className="search-wrap" ref={(el)=>{this.searchwrap=el}}>
             <Searchbar returnf={this.getKeyword} keyword={this.state.keyword} parent={this}></Searchbar>
             {this.state.keyword==""?(<Hotpanel datas={this.state.hotpdatas} parent={this}></Hotpanel>):null}
+            {this.state.keyword==""?(<Searchhistory parent={this} ></Searchhistory>):null}
             {this.state.inputfocus&&(<Suggestsearch keyword={this.state.keyword} suggestdata={this.state.suggestdatas} parent={this}></Suggestsearch>)}
             {(this.state.mutimatch&&this.state.mutimatch.result.orders&&this.state.mutimatch.result.orders.length)?(<Btmatch datas={this.state.mutimatch.result}></Btmatch>):null}
             {this.state.searchresult?this.searchlist():null}

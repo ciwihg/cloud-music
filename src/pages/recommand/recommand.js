@@ -16,6 +16,7 @@ class page extends Component{
 }
 componentWillMount(){
   Jsonp("/getrmd");
+  console.log(this.props.parent);
 }
 render(){
   if(!this.state.datas){ return null;}
