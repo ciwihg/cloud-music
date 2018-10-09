@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var querystring=require('querystring');
 var http = require('http');
+var https = require('https');
 var testapi=require('./testapi.js');
 var encrypt=require('./crypto.js');
 var newsongs;
@@ -105,10 +106,12 @@ app.get('/songurl',function(req,res){
     ids:'[\"'+req.query.id+'\"]',
     br:128000
   });
+
   var pdata={
     'params':processed.encText,
     'encSecKey':processed.encSecKey}
   var path="/weapi/song/enhance/player/url";
+
   testapi(pdata,path,res,getUrl);
 })
 app.get('/simisong',function(req,res){
@@ -174,13 +177,13 @@ app.get('/song',function(req,res){
   }
   var response=res;
   var body = '';
-  var oreq=http.request(opt,function(res){
+  var oreq=https.request(opt,function(res){
     res.on('data',function(d){
       body += d;
     }).on('end',function(){
       var reg=/window.REDUX_STATE = ([^;]+);/;
       //sendHttpRequest();
-      response.send(getSong(body.match(reg)[1]));
+    response.send(getSong(body.match(reg)[1]));
     })
   }).on('error',function(e){
     console.log("Got error: " + e.message);
@@ -189,18 +192,17 @@ app.get('/song',function(req,res){
 });
 
 app.get('/getrmd',function(req,res){
-
   var opt = {
    host:'music.163.com',
    method:'GET',//这里是发送的方法
    path:'/m/',     //这里是访问的路径
    headers:{
-     'User-Agent': 'Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E)'
+     'User-Agent': 'Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36',
    }
   }
   var response=res;
   var body = '';
-  var oreq=http.request(opt,function(res){
+  var oreq=https.request(opt,function(res){
     res.on('data',function(d){
       body += d;
     }).on('end',function(){
