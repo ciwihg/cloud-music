@@ -18,5 +18,5 @@ nodejs应用代码位于server/目录下
     * 修改src/config/config.js
     ```javascript
     var config={
-  Apihost:"http://localhost:5050"
-}```
+   Apihost:"http://localhost:5050"}
+   ```
