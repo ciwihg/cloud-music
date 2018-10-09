@@ -3,7 +3,7 @@ cloud-music是基于自己搭建的 React-scaffloding 脚手架的一个模仿�
 react-router,sass
 #### 安装
 `npm install --D`  
-`npm run dev`
+`npm run init`
 #### 开发环境
 `npm run dev`
 #### 生产环境
