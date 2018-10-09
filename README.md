@@ -14,8 +14,8 @@ nodejs应用代码位于server/目录下
 * `npm install --D`
 * `node index.js`
 # 相关配置
-* 后台服务器的配置
-    * 修改src/config/config.js
+* 后台服务器的设置
+    * 修改src/config/config.js里的`Apihost`
     ```javascript
     var config={
    Apihost:"http://localhost:5050"}
