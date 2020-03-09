@@ -47,7 +47,7 @@ class Songpage extends Component{
      Jsonp("/simisong?id="+this.props.match.params.id);
   }
   setTitle(){
-    document.querySelector("title").innerHTML="Cmusic-"+this.state.datas.Song.info._simp.title;
+    document.querySelector("title").innerHTML="Cmusic-"+this.state.datas.Song.name;
   }
   updateDatas(data){
     this.setState({
@@ -157,14 +157,14 @@ class Songpage extends Component{
   render(){
     if(this.state.datas&&this.state.comments){
     return (<div className="sg-wrap">
-               <div className="sg-bg" style={{backgroundImage:"url("+this.state.datas.Song.info._bg+")"}}></div>
+               <div className="sg-bg" style={{backgroundImage:"url("+this.state.datas.Song.bgpic+")"}}></div>
                  <div className="sg-content-wrap" onClick={this.handleClick}>
-                 <Songdisc pic={this.state.datas.Song.info._pic} playing={this.state.playing}></Songdisc>
-                 <Lyric   ref={(el)=>{this.lyric=el;}} title={this.state.datas.Song.info._simp.songName+" - "+this.state.datas.Song.info._simp.singerName} lyricid={this.state.datas.Song.params.id}></Lyric>
+                 <Songdisc pic={this.state.datas.Song.al.picUrl} playing={this.state.playing}></Songdisc>
+                 <Lyric   ref={(el)=>{this.lyric=el;}} title={this.state.datas.Song.name+" - "+this.state.datas.Song.ar[0].name} lyricid={this.state.datas.Song.id}></Lyric>
                  </div>
+                 {this.simiplaylist()}
+                 {this.simisong()}
                {this.comments()}
-               {this.simiplaylist()}
-               {this.simisong()}
                <ReactPlayer url={this.state.url} width='0px'
           height="0px" playing={this.state.playing} ref={(p)=>{this.player=p;}} onReady={this.loglyric} onEnded={this.playEnd}></ReactPlayer>
           {this.state.loading?(<Popmask msg={"歌曲努力加载中，请稍后"}></Popmask>):null}

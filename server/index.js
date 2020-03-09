@@ -181,9 +181,12 @@ app.get('/song',function(req,res){
     res.on('data',function(d){
       body += d;
     }).on('end',function(){
-      var reg=/window.REDUX_STATE = ([^;]+);/;
+      var reg=/window.REDUX_STATE = (.+)[;<]/;
       //sendHttpRequest();
-    response.send(getSong(body.match(reg)[1]));
+      var regbgurl=/background-image:url\((.+)\);/
+      var tempdata = JSON.parse(body.match(reg)[1]);
+      tempdata.Song.bgpic = body.match(regbgurl)[1];
+    response.send(getSong(JSON.stringify(tempdata)));
     })
   }).on('error',function(e){
     console.log("Got error: " + e.message);
@@ -206,7 +209,7 @@ app.get('/getrmd',function(req,res){
     res.on('data',function(d){
       body += d;
     }).on('end',function(){
-      var reg=/window.REDUX_STATE = ([^;]+);/;
+      var reg=/window.REDUX_STATE = (.+)[;<]/;
       sendHttpRequest(response,body.match(reg)[1]);
     })
   }).on('error',function(e){

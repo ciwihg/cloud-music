@@ -33,7 +33,6 @@ module.exports=function sendHttpRequest(postdata,path,tores,cb,id,scb){
    res.on('data',function(d){
    body += d;
   }).on('end', function(){
-    console.log(body);
    tores.send(cb(body,scb));
   });
 

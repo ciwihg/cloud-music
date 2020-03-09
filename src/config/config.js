@@ -1,4 +1,4 @@
 var config={
-  Apihost:"https://musicapi.applinzi.com"
+  Apihost:"http://localhost:5050"
 }
 export {config}

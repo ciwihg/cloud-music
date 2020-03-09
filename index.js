@@ -96,6 +96,7 @@ window.handleUrl=function(data){
   document.body.removeChild(  window.scripts.pop());
 }
 window.handleSongdata=function(data){
+  console.log(data);
   window.songpage.updateDatas(data);
   document.body.removeChild(  window.scripts.pop());
 }
@@ -117,7 +118,7 @@ window.reredener=function (data,newsongs){
   window.reactdatas={};
   window.recommendpage&&window.recommendpage.setState({
     datas:{
-      rmdlist:data.HomeRecommend.data._list,
+      rmdlist:data.Home.result,
       sglist:newsongs.result
     }
   });
